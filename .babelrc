@@ -1,0 +1,4 @@
+//configurar el babel para convertir js a js estandar 
+{
+  "presets":["@babel/preset-env"] //babel detecte lo que tiene que hacer
+}
