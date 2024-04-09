@@ -1,4 +1,4 @@
-import  connection from '../db/connection.js';
+import  {getConnection} from '../db/connection.js';
 import comprobarUsuario from '../models/mod_empre.js';
 
 // Controlador para manejar las operaciones relacionadas con las empresas

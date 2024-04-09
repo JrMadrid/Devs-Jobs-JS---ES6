@@ -11,13 +11,6 @@ const connection = mysql.createConnection({
 	connectTimeout: 10000 // Opcional: tiempo de espera de la conexión
 });
 
-// Conecta a la base de datos
-connection.connect((error) => {
-	if (error) {
-		console.error('Error al conectar a la base de datos:', error.message);
-	} else {
-		console.log('Conexión exitosa a la base de datos');
-	}
-});
-
-export default  connection;
+export const getConnection = () => {
+	return connection;
+};

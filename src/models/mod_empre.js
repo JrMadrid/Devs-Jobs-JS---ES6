@@ -1,4 +1,4 @@
-import connection from'../db/connection.js';
+import {getConnection} from'../db/connection.js';
 function comprobarUsuario(codigo, password, callback) {
   const query = 'SELECT * FROM usr_empre WHERE codigo = ? AND password = ?';
   connection.query(query, [codigo, password], (error, results) => {

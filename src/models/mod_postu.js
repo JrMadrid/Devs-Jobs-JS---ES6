@@ -1,5 +1,6 @@
-import connection from '../db/connection.js';
-function comprobarUsuario(username, password, callback) {
+import {getConnection} from '../db/connection.js';
+async function comprobarUsuario(username, password, callback) {
+  const connection  = await getConnection();
   const query = 'SELECT * FROM usr_postu WHERE nickname = ? AND password = ?';
   connection.query(query, [username, password], (error, results) => {
     if (error) {
