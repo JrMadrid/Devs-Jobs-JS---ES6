@@ -17,32 +17,32 @@
     <h2>Registro de Usuario para Postulante</h2>
 
     <form action="/postulante/postulante" method="POST">
-      <label for="numid">Numero de Indentidad:</label>
-        <input type="text" id="numid" name="numid" pattern="[0-9]{4}-[0-9]{4}-[0-9]{5}" placeholder="####-####-#####" required minlength="15" maxlength="15"> <br> <br>
-      <label for="nombre">Nombres:</label>
-        <input type="text" id="nombre" name="nombre" required maxlength="20"> <br> <br>
-      <label for="apellido">Apellidos:</label>
-        <input type="text" id="apellido" name="apellido" required maxlength="20"> <br> <br>
-      <label for="correo">Correo:</label>
-        <input type="email" id="correo" name="correo" required maxlength="60"><br> <br>
+      <label for="NumeroIdentidad">Numero de Indentidad:</label>
+        <input type="text" id="NumeroIdentidad" name="NumeroIdentidad" pattern="[0-9]{4}-[0-9]{4}-[0-9]{5}" placeholder="####-####-#####" required minlength="15" maxlength="15"> <br> <br>
+      <label for="Nombres">Nombres:</label>
+        <input type="text" id="Nombres" name="Nombres" required maxlength="20"> <br> <br>
+      <label for="Apellidos">Apellidos:</label>
+        <input type="text" id="Apellidos" name="Apellidos" required maxlength="20"> <br> <br>
+      <label for="CorreoElectronico">Correo:</label>
+        <input type="email" id="CorreoElectronico" name="CorreoElectronico" required maxlength="60"><br> <br>
       <label for="telefono">Telefono:</label>
         <input type="text" id="telefono" name="telefono" required maxlength="15"><br> <br>
-      <label for="fechan">Fecha de Nacimiento:</label>
-        <input type="date" id="fechan" name="fechan" required ><br> <br>
+      <label for="FechaNacimiento">Fecha de Nacimiento:</label>
+        <input type="date" id="FechaNacimiento" name="FechaNacimiento" required ><br> <br>
       <label>Sexo: </label>
-        <label><input type="radio" name="sexo" value="H" checked>Hombre</label>
-        <label><input type="radio" name="sexo" value="M">Mujer</label><br> <br>
-      <label for="direccion">Dirección:</label>
-        <input type="text" maxlength="200" id="direccion" name="direccion" required><br> <br> <!-- H/M -->
+        <label><input type="radio" name="Sexo" value="H" checked>Hombre</label>
+        <label><input type="radio" name="Sexo" value="M">Mujer</label><br> <br>
+      <label for="Direccion">Dirección:</label>
+        <input type="text" maxlength="200" id="Direccion" name="Direccion" required><br> <br> <!-- H/M -->
         <label>Estado: </label>
-        <label><input type="radio" name="estado" value="Empleado" checked>Empleado</label>
-        <label><input type="radio" name="estado" value="Desempleado">Desempleado</label><br> <br>
-      <label for="area">Area:</label>
-        <input type="text" id="area" name="area" required maxlength="45"><br> <br>
-      <label for="descripcion">Descripción:</label>
-        <input type="text" id="descripcion" name="descripcion" required maxlength="100"><br> <br>
-      <label for="nickname">Usuario:</label>
-        <input type="text" id="nickname" name="nickname" required maxlength="12"><br> <br>
+        <label><input type="radio" name="Estadop" value="Empleado" checked>Empleado</label>
+        <label><input type="radio" name="Estadop" value="Desempleado">Desempleado</label><br> <br>
+      <label for="Area">Area:</label>
+        <input type="text" id="Area" name="Area" required maxlength="45"><br> <br>
+      <label for="Descripcion">Descripción:</label>
+        <input type="text" id="Descripcion" name="Descripcion" required maxlength="100"><br> <br>
+      <label for="Nickname">Usuario:</label>
+        <input type="text" id="Nickname" name="Nickname" required maxlength="12"><br> <br>
       <br>
       <button type="submit" style="margin-bottom: 20px;">Enviar</button>
     </form>
