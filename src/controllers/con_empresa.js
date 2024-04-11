@@ -1,110 +1,104 @@
-import  {getConnection} from '../db/connection.js';
+import { Connection } from 'promise-mysql';
+import { getConnection } from '../db/connection.js';
 import comprobarUsuario from '../models/mod_empre.js';
 
-// Controlador para manejar las operaciones relacionadas con las empresas
-const usrEmpreController = {
-  // Método para obtener todas las empresas
-  getusrEmpre: (req, res) => {
-    connection.query('SELECT * FROM usr_empre', (error, results) => {
+/* POST / CREATE / CREAR / INSERT */
+const createusrEmpre = async (req, res) => { //Crear usuario
+  try {
+    const { codigo, correo, password } = req.body
+    const data = { codigo, correo, password };
+    const connection = await getConnection();
+    await connection.query('Insert into usr_empre set ?', data);
+    res.redirect('/empresa/usuario');
+  } catch (error) {
+    console.error('Error trying adding new data:', error);
+  }
+}
+const login = (req, res) => { //Login de usuario
+  try {
+    const { codigo, password } = req.body;
+    comprobarUsuario(codigo, password, (error, existe) => {
       if (error) {
-        throw error;
-      }
-      res.render('empresa/usr_empre.ejs', { resQuery: results });
-    });
-  },
-  createusrEmpre: (req, res) => {
-    const usrEmpreCode = req.body.codigo;
-    const usrEmpreCorreo = req.body.correo;
-    const usrEmpreClave = req.body.clave;
-    connection.query('INSERT INTO usr_empre (codigo,correo,password) VALUES (?,?,?)', [usrEmpreCode, usrEmpreCorreo, usrEmpreClave], (error, results, fields) => {
-      if (error) {
-        console.error('Error al insertar usuario empresa:', error);
-        res.status(500).json({ error: 'Error interno del servidor' });
-      } else {
-        // Si la inserción fue exitosa, devolver una respuesta exit
-        res.redirect('/empresa/usuario');
-      }
-    });
-  },
-  login: (req, res) => {
-    const usrEmpreCode = req.body.codigo;
-    const usrEmpreClave = req.body.clave;
-    comprobarUsuario(usrEmpreCode, usrEmpreClave, (error, existe) => {
-      if (error) {
-        // Manejar el error
-        console.error('Error al comprobar el usuario:', error);
-        return;
+        console.error("Failure to verify user", error);
       }
       if (existe) {
-        res.redirect('/empresa')
-        console.log('El usuario existe en la base de datos.');
-      } else {
-        res.redirect('/empresa/reg_empresa.html')
-        console.log('El usuario no existe en la base de datos.');
+        res.redirect('/empresa');
       }
-    });
-  },
-  getEmpresa: (req, res) => {
-    connection.query('SELECT * FROM empresa', (error, results) => {
-      if (error) {
-        throw error;
+      else {
+        res.redirect('/empresa/reg_empresa.html');
+        console.log("The user does not exist in the database");
       }
-      res.render('empresa/empresa.ejs', { resQuery: results });
-    });
-  },
-  createEmpresa: (req, res) => {
-    EmpresaID = req.body.empreid;
-    Nombre = req.body.nombre;
-    RTN = req.body.rtn;
-    Direccion = req.body.direccion;
-    Telefono = req.body.telefono;
-    CorreoElectronico = req.body.correo;
-    Descripcion = req.body.descr;
-    codigo = req.body.codigo;
-    connection.query('INSERT INTO empresa (EmpresaID, Nombre, RTN, Direccion, Telefono, CorreoElectronico, Descripcion, codigo) VALUES (?,?,?,?,?,?,?,?)',
-      [EmpresaID, Nombre, RTN, Direccion, Telefono, CorreoElectronico, Descripcion, codigo], (error, results, fields) => {
-        if (error) {
-          console.error('Error al insertar empresa:', error);
-          res.status(500).json({ error: 'Error interno del servidor, datos no validos o no se encontro' });
-        } else {
-          // Si la inserción fue exitosa, devolver una respuesta exit
-          res.redirect('/empresa/empresa');
-        }
-      });
-  },
-  getContratos: (req, res) => {
-    connection.query('SELECT * FROM contrato', (error, results) => {
-      if (error) {
-        throw error;
-      }
-      res.render('empresa/contratos.ejs', { resQuery: results });
-    });
-  },
-  createVacante: (req, res) => { ///
-    VacanteID = req.body.VacanteID;
-    EmpresaID = req.body.EmpresaID;
-    Puesto = req.body.Puesto;
-    Jornada = req.body.Jornada;
-    Descripcion = req.body.Descripcion;
-    Lugar = req.body.Lugar;
-    Edad = req.body.Edad;
-    GradoAcademico = req.body.GradoAcademico;
-    Experiencia = req.body.Experiencia;
-    Conocimientos = req.body.Conocimientos;
-    DisponibilidadViajar = req.body.DisponibilidadViajar;
-    DocumentosRequeridos = req.body.DocumentosRequeridos;
-    connection.query('INSERT INTO vacante (VacanteID ,EmpresaID , Puesto ,Jornada , Descripcion , Lugar ,Edad , GradoAcademico, Experiencia , Conocimientos , DisponibilidadViajar , DocumentosRequeridos) VALUES (?,?,?,?,?,?,?,?,?,?,?,?)',
-      [VacanteID ,EmpresaID , Puesto ,Jornada , Descripcion , Lugar  ,Edad , GradoAcademico, Experiencia , Conocimientos , DisponibilidadViajar , DocumentosRequeridos], (error, results, fields) => {
-        if (error) {
-          console.error('Error al insertar usuario postulante:', error);
-          res.status(500).json({ error: 'Error interno del servidor, datos no validos o no se encontro ' });
-        } else {
-          // Si la inserción fue exitosa, devolver una respuesta exit
-          res.redirect('/empresa');
-        }
-      });
+    })
+  } catch (error) {
+    console.error('Error:', error);
+    res.status(500);
+    res.send(error.message);
   }
-};
+}
+const createEmpresa = async (req, res) => { //Crear empresas
+  try {
+    const { EmpresaID, Nombre, RTN, Direccion, Telefono, CorreoElectronico, Descripcion, codigo } = req.body
+    const data = { EmpresaID, Nombre, RTN, Direccion, Telefono, CorreoElectronico, Descripcion, codigo };
+    const connection = await getConnection();
+    await connection.query('insert into empresa set ?', data)
+    res.redirect("/empresa/empresa")
+  } catch (error) {
+    console.error("Error: ", error);
+    res.status(500);
+    res.send(error.message)
+  }
+}
+const createVacante = async (req, res) => {//Crear vacante
+  try {
+    const { VacanteID, EmpresaID, Puesto, Jornada, Descripcion, Lugar, Edad, GradoAcademico, Experiencia, Conocimientos, DisponibilidadViajar, DocumentosRequeridos } = req.body;
+    const data = { VacanteID, EmpresaID, Puesto, Jornada, Descripcion, Lugar, Edad, GradoAcademico, Experiencia, Conocimientos, DisponibilidadViajar, DocumentosRequeridos }
+    const connection = await getConnection();
+    await connection.query("insert into vacante set ?", data)
+    res.redirect("/empresa")
+  } catch (error) {
+    console.error("Error: ", error);
+    res.status(500);
+    res.send(error.message)
+  }
+}
 
+/* GET / READ / LEER / SELECT */
+const getusrEmpre = async (req, res) => { //Leer los usuarios
+  try {
+    const connection = await getConnection();
+    const result = await connection.query("Select * from usr_empre")
+    res.render('empresa/usr_empre.ejs', { resQuery: result })
+  } catch (error) {
+    console.error('Error:', error);
+    res.status(500);
+    res.send(error.message);
+  }
+}
+const getEmpresa = async (req, res) => { //Leer las empresas
+  try {
+    const connection = await getConnection();
+    const result = await connection.query('select * from empresa');
+    res.render('empresa/empresa.ejs', { resQuery: result });
+  } catch (error) {
+    res.status(500)
+    console.error("error", error);
+    res.send(error.message)
+  }
+}
+const getContrato = async (req, res) => { //Leer Contrato
+  try {
+    const connection = await getConnection();
+    const result = await connection.query("select * from contrato");
+    res.render('empresa/contratos.ejs',{resQuery:result})
+  } catch (error) {
+    res.status(500)
+    console.error("error", error);
+    res.send(error.message)
+  }
+}
 // Exportar el controlador para que pueda ser utilizado en otros archivos
-export default  usrEmpreController;
+export const methods = {
+  getusrEmpre, getEmpresa, getContrato,
+  login,
+  createusrEmpre, createEmpresa, createVacante
+}

@@ -8,16 +8,25 @@
 	<link rel="stylesheet" href="../css/general.css">
 	<title>Empresas</title>
 </head>
+
 <body>
 	<iframe scrolling="no" src="../../components/navbar/nave.html" class="navbar"></iframe>
 	<div class="divp" style="height:120hv">
-		<img src="../img/PNEH.png" class="fondopneh" >
+		<img src="../img/PNEH.png" class="fondopneh">
 		<div class="position-absolute text-center" divp>
 			<table width=100% cellspacing=0 cellpadding=0>
 				<h1>Listado de Empresas</h1>
 				<thead>
 					<tr>
 						<th>Nombres</th>
+						<th>EmpresaID va</th>
+						<th>Nombre </th>
+						<th>RTN</th>
+						<th>Direccion </th>
+						<th>Telefono</th>
+						<th>CorreoElectronico </th>
+						<th>Descripcion </th>
+						<th>codigo</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -28,6 +37,14 @@
 							<td>
 								<%= eje.Nombre %> <!-- asi se encrusta el js aqui-->
 							</td>
+							<td><%= eje.EmpresaID %></td>
+							<td><%= eje.Nombre %></td>
+							<td><%= eje.RTN %></td>
+							<td><%= eje.Direccion %></td>
+							<td><%= eje.Telefono %></td>
+							<td><%= eje.CorreoElectronico %></td>
+							<td><%= eje.Descripcion %></td>
+							<td><%= eje.codigo %></td>
 						</tr>
 						<% }); %>
 				</tbody>
@@ -35,4 +52,5 @@
 		</div>
 	</div>
 </body>
+
 </html>

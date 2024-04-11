@@ -7,11 +7,11 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 /* Importar Router */
 import routerPostu from './routes/rou_postu.js'
-// import routerEmpre from './routes/rou_empre.js';
+import routerEmpre from './routes/rou_empre.js';
 // import routerAdmins from './routes/rou_admins.js';
 /*rutas*/
-// app.use(routerEmpre);
 // app.use(routerAdmins);
+app.use('/empresa',routerEmpre);
 app.use('/postulante',routerPostu);
 
 /* MIDDLEWARES */

@@ -1,16 +1,17 @@
 import express from 'express';
-import bodyParser from 'body-parser';
-import usrEmpreController from '../controllers/con_empresa.js';
+import {methods as EmpresaControllers} from '../controllers/con_empresa.js';
 const routerEmpre = express.Router();
-
-routerEmpre.get('/empresa/usuario',usrEmpreController.getusrEmpre);
+import bodyParser from 'body-parser';
 routerEmpre.use(bodyParser.urlencoded({ extended: true }));
-routerEmpre.post('/empresa/usuario', usrEmpreController.createusrEmpre);
-routerEmpre.post('/empresa/login',usrEmpreController.login);
 
-routerEmpre.get('/empresa/empresa',usrEmpreController.getEmpresa);
-routerEmpre.post('/empresa/empresa',usrEmpreController.createEmpresa);
-routerEmpre.get('/empresa',usrEmpreController.getContratos);
-routerEmpre.post('/empresa/vacante',usrEmpreController.createVacante);
+routerEmpre.post('/usuario', EmpresaControllers.createusrEmpre); //Crear usuario
+routerEmpre.post('/login',EmpresaControllers.login); //Login de usuario
+routerEmpre.post('/empresa',EmpresaControllers.createEmpresa); //Crear empresas
+routerEmpre.post('/vacante',EmpresaControllers.createVacante); //Crear vacante
+
+/* GET / READ / LEER / SELECT */
+routerEmpre.get('/usuario',EmpresaControllers.getusrEmpre); //Leer los usuarios
+routerEmpre.get('/empresa',EmpresaControllers.getEmpresa); //Leer las empresas
+routerEmpre.get('/',EmpresaControllers.getContrato); //Leer Contrato
 
 export default routerEmpre;

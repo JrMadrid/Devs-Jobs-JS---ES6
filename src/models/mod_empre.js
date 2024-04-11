@@ -1,7 +1,8 @@
-import {getConnection} from'../db/connection.js';
-function comprobarUsuario(codigo, password, callback) {
+import {getConnection} from '../db/connection.js';
+async function comprobarUsuario(username, password, callback) {
+  const connection  = await getConnection();
   const query = 'SELECT * FROM usr_empre WHERE codigo = ? AND password = ?';
-  connection.query(query, [codigo, password], (error, results) => {
+  connection.query(query, [username, password], (error, results) => {
     if (error) {
       // Manejar el error
       console.error('Error ejecutando la consulta SQL:', error);

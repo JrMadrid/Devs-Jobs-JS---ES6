@@ -54,7 +54,7 @@ const createContrato = async (req, res) => { //crear Contrato
     const { ContratoID, VacanteID, NumeroIdentidad, TipoContrato, FechaInicio, FechaVencimiento, Horario, Sueldo, DiasLaborales, DiasVacaciones, Departamento } = req.body;
     const data = { ContratoID, VacanteID, NumeroIdentidad, TipoContrato, FechaInicio, FechaVencimiento, Horario, Sueldo, DiasLaborales, DiasVacaciones, Departamento }
     const connection = await getConnection();
-    await connection.query('INSERT INTO contrato set ?',data);
+    await connection.query('INSERT INTO contrato set ?', data);
     res.redirect('/postulante');
   } catch (error) {
     res.status(500);
@@ -96,6 +96,13 @@ const getVacantes = async (req, res) => { //Leer las vacantes formadas por las e
   }
 }
 /* PUT / UPDATE / ACTUALIZAR / UPDATE */
+const updateUsr_Postu = async (req, res) => {
+  try {
+
+  } catch (error) {
+    
+  }
+}
 /* DELETE / DELETE / BORRAR / DELETE */
 
 
@@ -103,5 +110,5 @@ const getVacantes = async (req, res) => { //Leer las vacantes formadas por las e
 export const methods = {
   getusrPostu, getPostulante, getVacantes,
   login,
-  createusrPostu, createPostulante,createContrato
+  createusrPostu, createPostulante, createContrato
 }

@@ -12,6 +12,7 @@
 <div class="divp" style="text-align: center;">
   <img src="../img/PNEH.png" class="fondopneh">
   <h2>Registro de Vacante</h2>
+  <form action="/empresa/vacante" method="POST">
     <label for="VacanteID">VacanteID:</label>
       <input type="text" id="VacanteID" name="VacanteID" pattern="[A-Z]{2}[0-9]{5}" placeholder="XX#####" required minlength="7" maxlength="7"> <br> <br>
     <label for="EmpresaID">EmpresaID:</label>
@@ -37,7 +38,6 @@
       <label><input type="radio" name="DisponibilidadViajar" value="No">No</label><br> <br>
     <label for="DocumentosRequeridos">Documentos Requeridos:</label>
       <input type="text" id="DocumentosRequeridos" name="DocumentosRequeridos" required maxlength="500"> <br> <br>
-      
     <button type="submit" style="margin-bottom: 20px;">Enviar</button>
   </form>
 </div>

@@ -5,7 +5,7 @@ import bodyParser from 'body-parser';
 routerPostu.use(bodyParser.urlencoded({ extended: true }));
 
 /* POST / CREATE / CREAR / INSERT */
-routerPostu.post('/usuario', PostulanteControllers.createusrPostu); //crear usuario
+routerPostu.post('/usuario', PostulanteControllers.createusrPostu); //Crear usuario
 routerPostu.post('/login',PostulanteControllers.login); //login usuario
 routerPostu.post('/postulante',PostulanteControllers.createPostulante); //Crear Postulante
 routerPostu.post('/contrato',PostulanteControllers.createContrato); //Crear contrato
