@@ -4,6 +4,7 @@ const routerEmpre = express.Router();
 import bodyParser from 'body-parser';
 routerEmpre.use(bodyParser.urlencoded({ extended: true }));
 
+/* POST / CREATE / CREAR / INSERT */
 routerEmpre.post('/usuario', EmpresaControllers.createusrEmpre); //Crear usuario
 routerEmpre.post('/login',EmpresaControllers.login); //Login de usuario
 routerEmpre.post('/empresa',EmpresaControllers.createEmpresa); //Crear empresas
@@ -13,5 +14,8 @@ routerEmpre.post('/vacante',EmpresaControllers.createVacante); //Crear vacante
 routerEmpre.get('/usuario',EmpresaControllers.getusrEmpre); //Leer los usuarios
 routerEmpre.get('/empresa',EmpresaControllers.getEmpresa); //Leer las empresas
 routerEmpre.get('/',EmpresaControllers.getContrato); //Leer Contrato
+
+/* PUT / UPDATE / ACTUALIZAR / UPDATE */
+/* DELETE / DELETE / BORRAR / DELETE */
 
 export default routerEmpre;
