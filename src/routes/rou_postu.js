@@ -16,6 +16,9 @@ routerPostu.get('/postulante',PostulanteControllers.getPostulante); //Leer los p
 routerPostu.get('/',PostulanteControllers.getVacantes); //Leer las vacantes formadas por las empresas
 
 /* PUT / UPDATE / ACTUALIZAR / UPDATE */
+// routerPostu.PUT('',PostulanteControllers.getusrPostu); //Actualizar los usuarios de los postulantes
+
+// routerPostu.delete('',PostulanteControllers.deletePostulante); //Eliminar los postulantes
 /* DELETE / DELETE / BORRAR / DELETE */
 
 

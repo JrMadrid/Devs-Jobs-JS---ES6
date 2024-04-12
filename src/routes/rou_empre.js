@@ -16,6 +16,9 @@ routerEmpre.get('/empresa',EmpresaControllers.getEmpresa); //Leer las empresas
 routerEmpre.get('/',EmpresaControllers.getContrato); //Leer Contrato
 
 /* PUT / UPDATE / ACTUALIZAR / UPDATE */
+// routerPostu.PUT('',EmpresaControllers.getusrPostu); //Actualizar los usuarios de las empresas
+
+// routerPostu.delete('',EmpresaControllers.deletePostulante); //Eliminar las empresas
 /* DELETE / DELETE / BORRAR / DELETE */
 
 export default routerEmpre;
