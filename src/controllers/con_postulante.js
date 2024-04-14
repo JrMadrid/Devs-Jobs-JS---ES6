@@ -66,7 +66,7 @@ const getusrPostu = async (req, res) => { // Leer los usuarios de los postulante
   try {
     const connection = await getConnection();
     const result = await connection.query("SELECT * FROM usr_postu");
-    res.render('postulante/usr_postu.ejs', { resQuery: result,message: 'Usuarios Postulante'});
+    res.render('postulante/usr_postu.ejs', { resQuery: result,title: 'Usuarios Postulante'});
   } catch (error) {
     console.error('Error:', error);
     res.status(500);
