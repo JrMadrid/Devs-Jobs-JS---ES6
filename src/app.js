@@ -1,6 +1,9 @@
 import express from 'express'
 import { fileURLToPath } from 'url';
 import path from 'path';  //El módulo 'path' proporciona utilidades para trabajar con rutas de archivos y directorios en Node.js. 
+import myconnection from 'express-myconnection'
+import session from 'express-session'
+
 
 const app = express();
 const __dirname = path.dirname(fileURLToPath(import.meta.url));

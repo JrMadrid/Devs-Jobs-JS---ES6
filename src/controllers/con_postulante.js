@@ -1,5 +1,6 @@
 import { getConnection } from '../db/connection.js';
 import comprobarUsuario from '../models/mod_postu.js';
+import bcrypt from 'bcrypt'
 
 /* POST / CREATE / CREAR / INSERT */
 const createusrPostu = async (req, res) => { // Crear un nuevo usuario para postulantes
@@ -9,7 +10,6 @@ const createusrPostu = async (req, res) => { // Crear un nuevo usuario para post
     const connection = await getConnection();
     await connection.query('INSERT INTO usr_postu SET ?', data)
     res.redirect('/postulante/usuario')
-    // res.json({message: `user ${nickname} has been added`})
     console.log(data);
   } catch (error) {
     console.error('Error trying adding new data:', error);
@@ -66,7 +66,7 @@ const getusrPostu = async (req, res) => { // Leer los usuarios de los postulante
   try {
     const connection = await getConnection();
     const result = await connection.query("SELECT * FROM usr_postu");
-    res.render('postulante/usr_postu.ejs', { resQuery: result });
+    res.render('postulante/usr_postu.ejs', { resQuery: result,message: 'Usuarios Postulante'});
   } catch (error) {
     console.error('Error:', error);
     res.status(500);
@@ -100,7 +100,7 @@ const updateUsr_Postu = async (req, res) => {
   try {
 
   } catch (error) {
-    
+
   }
 }
 /* DELETE / DELETE / BORRAR / DELETE */
