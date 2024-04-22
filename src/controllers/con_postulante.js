@@ -5,8 +5,10 @@ import bcrypt from 'bcrypt'
 /* POST / CREATE / CREAR / INSERT */
 const createusrPostu = async (req, res) => { // Crear un nuevo usuario para postulantes
   try {
-    const { nickname, correo, password } = req.body;
-    const data = { nickname, correo, password };
+    const data = req.body;
+    await bcrypt.hash(data.password, 12).then(hash => {
+      data.password = hash
+    })
     const connection = await getConnection();
     await connection.query('INSERT INTO usr_postu SET ?', data)
     res.redirect('/postulante/usuario')
@@ -17,8 +19,8 @@ const createusrPostu = async (req, res) => { // Crear un nuevo usuario para post
 }
 const login = (req, res) => { //Login de usuario
   try {
-    const { nickname, password } = req.body;
-    comprobarUsuario(nickname, password, (error, existe) => {
+    const data = req.body;
+    comprobarUsuario(data.nickname, data.password, (error, existe) => {
       if (error) {
         console.error("Failure to verify user", error);
       }
@@ -66,7 +68,7 @@ const getusrPostu = async (req, res) => { // Leer los usuarios de los postulante
   try {
     const connection = await getConnection();
     const result = await connection.query("SELECT * FROM usr_postu");
-    res.render('postulante/usr_postu.ejs', { resQuery: result,title: 'Usuarios Postulante'});
+    res.render('postulante/usr_postu.ejs', { resQuery: result, title: 'Usuarios Postulante' });
   } catch (error) {
     console.error('Error:', error);
     res.status(500);
